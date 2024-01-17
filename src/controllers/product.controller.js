@@ -1,6 +1,6 @@
 const db = require("../config/database");
 
-// Laudo Paciente Table 1
+// Laudo Paciente Table 1 - teste
 // ==> Método responsável por criar um novo 'Laudo':
 exports.createProduct = async (req, res) => {
     const { nome, idade, registro, unidade, data_coleta, adequabilidade, epitelios, alteracoes_celulares, microbiologia, atipias_celulares, conclusao } = req.body;
@@ -53,15 +53,15 @@ exports.deleteProductById = async (req, res) => {
 // Laudo Paciente Table 2
 // ==> Método responsável por criar um novo 'Laudo':
 exports.createProduct2 = async (req, res) => {
-    const { nome2, idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, alteracoes_celulares2, microbiologia2, conclusao2 } = req.body;
+    const { nome2, idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, microbiologia2, atipias2, conclusao2 } = req.body;
     const { rows } = await db.query(
-        "INSERT INTO paciente_laudo2 (nome2, idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, alteracoes_celulares2, microbiologia2, conclusao2) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
-        [nome2, idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, alteracoes_celulares2, microbiologia2, conclusao2]
+        "INSERT INTO paciente_laudo2 (nome2, idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, microbiologia2, atipias2, conclusao2) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
+        [nome2, idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, microbiologia2, atipias2, conclusao2]
     );
     res.status(201).send({
         message: "Product added successfully!",
         body: {
-            product: { nome2, idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, alteracoes_celulares2, microbiologia2, conclusao2 }
+            product: { nome2, idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, microbiologia2, atipias2, conclusao2 }
         },
     });
 };
@@ -82,10 +82,10 @@ exports.findProductById2 = async (req, res) => {
 // ==> Método responsável por atualizar um 'Laudo':
 exports.updateProductById2 = async (req, res) => {
     // const productId = parseInt(req.params.id);
-    const {nome2, idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, alteracoes_celulares2, microbiologia2, conclusao2 } = req.body;
+    const {nome2, idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, microbiologia2, atipias2, conclusao2 } = req.body;
     const response = await db.query(
-        "UPDATE paciente_laudo2 SET idade2 = $1, registro2 = $2, unidade2 = $3, data_coleta2 = $4, adequabilidade2 = $5, epitelios2 = $6, alteracoes_celulares2 = $7, microbiologia2 = $8, conclusao2 = $9 WHERE nome2 = $10",
-        [idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, alteracoes_celulares2, microbiologia2, conclusao2, nome2]
+        "UPDATE paciente_laudo2 SET idade2 = $1, registro2 = $2, unidade2 = $3, data_coleta2 = $4, adequabilidade2 = $5, epitelios2 = $6, microbiologia2 = $7, atipias2 = $8, conclusao2 = $9 WHERE nome2 = $10",
+        [idade2, registro2, unidade2, data_coleta2, adequabilidade2, epitelios2, microbiologia2, atipias2, conclusao2, nome2]
     );
     res.status(200).send({ message: "Product Updated Successfully!" });
 };
